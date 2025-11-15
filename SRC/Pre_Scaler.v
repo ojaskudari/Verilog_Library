@@ -5,6 +5,7 @@ module Pre_Scaler #(
   input wire reset_n,
   output reg clk_out
 );
+  localparam max_count=(DIVISOR>1) ? DIVISOR-1 : 1;
   reg [$clog2(DIVISOR)-1:0] bit_count; 
 
   always @(posedge clk_in or negedge reset_n) begin
@@ -12,7 +13,7 @@ module Pre_Scaler #(
       bit_count <= 0;
       clk_out   <= 0;
     end else begin
-      if (bit_count == DIVISOR-1) begin
+      if (bit_count == $clog2(DIVISOR)'(max_count)) begin
         bit_count <= 0;
         clk_out   <= ~clk_out;
       end else begin

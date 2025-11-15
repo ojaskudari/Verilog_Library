@@ -1,4 +1,4 @@
-module priority_encoder(
+module Priority_encoder(
   input wire [7:] in,
   output reg [2:0] out,
   output reg valid

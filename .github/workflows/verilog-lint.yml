@@ -20,16 +20,17 @@ jobs:
           sudo apt-get install -y verilator
           sudo apt-get install -y verible-linter || true
 
-      - name: Run Verilator Strict Lint
+      - name: Run Verilator Strict Lint (per file, fail if any fails)
         run: |
-          echo "Running Verilator strict lint on all modules..."
-          verilator \
-            --lint-only \
-            -Wall \
-            -Wpedantic \
-            --error-limit 1 \
-            --bbox-sys \
-            SRC/*.v
+          echo "Running per-file Verilator strict lint..."
+          status=0
+          for file in SRC/*.v; do
+            echo "--------------------------------------------"
+            echo "Linting $file ..."
+            verilator --lint-only -Wall -Wpedantic --bbox-sys --error-limit 1 "$file" || status=1
+            echo "--------------------------------------------"
+          done
+          exit $status
 
       - name: Run Verible Lint (optional)
         run: |

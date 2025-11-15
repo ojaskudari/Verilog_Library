@@ -1,4 +1,4 @@
-module barrel_shifter #(
+module Barrel_shifter #(
   parameter WIDTH = 8 
 )(
   input  [WIDTH-1:0] data_in,               

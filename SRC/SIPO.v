@@ -22,7 +22,7 @@ module SIPO #(
         out[SIZE-1-bit_count]<=in;
       end
       busy<=1;
-      if (bit_count == SIZE-1) begin
+      if (bit_count == $clog2(SIZE)'(SIZE-1)) begin
         bit_count <= 0;
         done <= 1;  
         busy<=0;

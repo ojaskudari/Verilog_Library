@@ -1,4 +1,4 @@
-module siso #(
+module SISO #(
   parameter SIZE=8
 )(
   input wire in,clk,enable,reset,

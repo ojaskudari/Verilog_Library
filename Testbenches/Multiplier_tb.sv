@@ -14,13 +14,7 @@ module Multiplier_tb;
     .in2(in2),
     .out(out)
   );
-
-  // Waveform dump
-  initial begin
-    $dumpfile("tb_multiplier.vcd");   // waveform file
-    $dumpvars(0, Multiplier_tb);      // dump all signals in this testbench
-  end
-
+  
   // Stimulus
   initial begin
     // Directed tests

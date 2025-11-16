@@ -1,11 +1,23 @@
-# Verilog Modules Library
+# Verilog Modules Library [![Lint Status](https://github.com/MrAbhi19/Verilog_Library/actions/workflows/verilog-lint.yml/badge.svg)](https://github.com/MrAbhi19/Verilog_Library/actions/workflows/verilog-lint.yml)
+
+![License](https://img.shields.io/github/license/MrAbhi19/Verilog_Library)
 
 A growing collection of reusable, parameterized Verilog modules designed for learning, rapid prototyping, and integration into larger digital design projects. The goal of this repository is to maintain a clean, modular, and extensible library of hardware building blocks—each paired with testbenches, simulation waveforms, and clear documentation.
 
 This project is open for contributions in all forms: modules, testbenches, waveform captures, documentation, and ideas for upcoming designs.
 
 ---
+## 🛡️ Linting Policy
 
+This repository enforces **strict linting** using Verilator in GitHub Actions:
+
+- **Warnings are treated as errors** — even minor issues like unused signals or width mismatches will fail the workflow.
+- **Style and synthesis safety enforced** — checks include unused signals, width mismatches, implicit nets, unreachable code, and clock/reset handling.
+
+This strict setup guarantees that all HDL code here is **clean, reproducible, and synthesis‑safe**.  
+**✅ Every module in this repository is lint‑clean under Verilator strict mode.**
+
+---
 ## ✨ Features
 
 - **Reusable modules** — Clean, synthesizable Verilog with parameterization wherever applicable.
@@ -23,18 +35,20 @@ This project is open for contributions in all forms: modules, testbenches, wavef
 
 This list will grow as new modules are added.  
 Examples:
+## 🧩 Available Modules
 
-- SPI (Master and Slaves)
-- UART (Receiver and Transmitter)
-- ALU
-- Full Adder  
-- Bidirectional Counter  
-- Pre-Scaler  
-- Shift Registers (SISO, SIPO, PISO, PIPO)
-- Gray-Coded Counter  
-- PWM-Generator
-- Priority Encoder
-  
+
+| Module                | Description / Notes                                      |
+|-----------------------|----------------------------------------------------------|
+| **SPI (Master/Slave)**| Serial Peripheral Interface communication modules        |
+| **UART (TX/RX)**      | Universal Asynchronous Receiver/Transmitter (serial comms)|
+| **ALU**               | Arithmetic Logic Unit for basic operations               |
+| **Bidirectional Counter** | Counts up and down with control signals             |
+| **Pre-Scaler**        | Frequency divider for clock management                   |
+| **Shift Registers**   | SISO, SIPO, PISO, PIPO variants                          |
+| **Gray-Coded Counter**| Counter with Gray code output                            |
+| **Priority Encoder**  | Encodes highest-priority active input                    |
+
 ---
 
 ## 🚀 Contributions Welcome
@@ -94,5 +108,3 @@ For proposals or questions, start a GitHub Discussion before a PR.
 ## 📬 Contact / Discussions
 
 For module requests, ideas, improvements, or collaboration, use the **GitHub Discussions** section of this repository.
-
-[![Lint Status](https://github.com/MrAbhi19/Verilog_Library/actions/workflows/verilog-lint.yml/badge.svg)](https://github.com/MrAbhi19/Verilog_Library/actions/workflows/verilog-lint.yml)

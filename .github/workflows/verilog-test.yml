@@ -1,4 +1,4 @@
-hesname: Verilog Simulation
+name: Verilog Simulation
 
 on:
   push:

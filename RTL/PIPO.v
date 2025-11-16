@@ -1,9 +1,9 @@
 module PIPO #(
-  parameter SIZE=8
+  parameter WIDTH=8
 )(
-  input wire [SIZE-1:0] in,
+  input wire [WIDTH-1:0] in,
   input wire clk,reset,enable,
-  output reg [SIZE-1:0] out
+  output reg [WIDTH-1:0] out
 );
   always@(posedge clk or posedge reset) begin
     if (reset) begin

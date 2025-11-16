@@ -1,47 +1,23 @@
-name: Verilog Testbench Simulation
+name: Verilog Simulation
 
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'Testbenches/**'
   pull_request:
     branches: [ main ]
-    paths:
-      - 'Testbenches/**'
 
 jobs:
   simulate:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Install Icarus Verilog
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y iverilog
+    - name: Install Icarus Verilog
+      run: sudo apt-get update && sudo apt-get install -y iverilog
 
-      - name: Compile and run all testbenches
-        run: |
-          mkdir -p build
-          status=0
-          for tb in Testbenches/*.sv; do
-            echo "--------------------------------------------"
-            echo "Compiling $tb ..."
-            iverilog -g2012 -o build/simv "$tb" RTL/*.v || status=1
-            echo "Running $tb ..."
-            vvp build/simv || status=1
-            echo "--------------------------------------------"
-          done
-          exit $status
-
-      - name: Upload waveforms
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: waveforms
-          path: |
-            *.vcd
-            build/*.vcd
+    - name: Compile and run testbench
+      run: |
+        iverilog -g2012 -o simv RTL/Multiplier.v Testbenches/Multiplier_tb.sv
+        vvp simv

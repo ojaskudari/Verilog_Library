@@ -1,0 +1,53 @@
+name: HDL Synthesis
+
+on:
+  workflow_dispatch:
+    inputs:
+      verilog_file:
+        description: 'Verilog file to synthesize (e.g., alu.v)'
+        required: true
+        default: 'my_module.v'
+      top_module:
+        description: 'Top-level module name (e.g., alu)'
+        required: true
+        default: 'my_module'
+
+jobs:
+  synthesize:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Install OSS CAD Suite (Yosys + nextpnr)
+      - name: Install OSS CAD Suite
+        run: |
+          wget https://github.com/YosysHQ/oss-cad-suite-build/releases/latest/download/oss-cad-suite-linux-x64.tar.gz
+          tar -xzf oss-cad-suite-linux-x64.tar.gz
+          source oss-cad-suite/environment
+
+      # 3. Prepare usage folder
+      - name: Prepare usage folder
+        run: mkdir -p usage_reports
+
+      # 4. Synthesize for iCE40UP5K
+      - name: Synthesize for iCE40UP5K
+        run: |
+          echo "=== Report for ${{ github.event.inputs.top_module }} (iCE40UP5K) ===" >> usage_reports/ice40_usage.txt
+          yosys -p "read_verilog ${{ github.event.inputs.verilog_file }}; synth_ice40 -top ${{ github.event.inputs.top_module }}; stat" >> usage_reports/ice40_usage.txt
+          echo "" >> usage_reports/ice40_usage.txt
+
+      # 5. Synthesize for Artix-7
+      - name: Synthesize for Artix-7
+        run: |
+          echo "=== Report for ${{ github.event.inputs.top_module }} (Artix-7) ===" >> usage_reports/artix7_usage.txt
+          yosys -p "read_verilog ${{ github.event.inputs.verilog_file }}; synth_xilinx -top ${{ github.event.inputs.top_module }}; stat" >> usage_reports/artix7_usage.txt
+          echo "" >> usage_reports/artix7_usage.txt
+
+      # 6. Upload consolidated reports
+      - name: Upload synthesis reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: usage-reports
+          path: usage_reports/

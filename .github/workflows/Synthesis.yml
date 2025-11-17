@@ -45,9 +45,9 @@ jobs:
           yosys -p "read_verilog ${{ github.event.inputs.verilog_file }}; synth_xilinx -top ${{ github.event.inputs.top_module }}; stat" >> usage_reports/artix7_usage.txt
           echo "" >> usage_reports/artix7_usage.txt
 
-      # 6. Upload consolidated reports
+      # 6. Upload consolidated reports (use v4)
       - name: Upload synthesis reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: usage-reports
           path: usage_reports/

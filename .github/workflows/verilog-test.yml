@@ -33,3 +33,8 @@ jobs:
       run: |
         iverilog -g2012 -o simv RTL/MAC.v Testbenches/MAC_tb.sv
         vvp simv
+        
+    - name: Compile and run testbench Matrix multiplier
+      run: |
+        iverilog -g2012 -o simv RTL/Matrix_multiplier.v Testbenches/Matrix_multiplier_tb.sv
+        vvp simv

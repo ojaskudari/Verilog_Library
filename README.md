@@ -80,7 +80,7 @@ This index provides quick access to all modules in the repository along with the
 | **SIPO**           | [SIPO.v](./RTL/SIPO.v)   | Pending                            | Pending          | [SIPO.md](./Docs/SIPO.md)    | Pending          |
 | **SISO**           | [SISO.v](./RTL/SISO.v)   | Pending                            | Pending          | [SISO.md](./Docs/SISO.md)    | Pending          |
 | **SPI Master**     | [SPI_Master.v](./RTL/SPI_Master.v) | Pending                            | Pending          | [SPI_Master.md](./Docs/SPI_Master.md) | Pending          |
-| **Synchronous_FIFO**| [Synchronous_FIFO.v](./RTL/Synchronous_FIFO.v)| Pending | Pending | [Synchronous_FIFO.md](./RTL/Synchronous_FIFO.md) | Pending | 
+| **Synchronous_FIFO**| [Synchronous_FIFO.v](./RTL/Synchronous_FIFO.v)| Pending | Pending | [Synchronous_FIFO.md](./Docs/Synchronous_FIFO.md) | Pending | 
 | **UART RX**        | [UART_RX.v](./RTL/UART_RX.v) | Pending                            | Pending          | [UART_RX.md](./Docs/UART_RX.md) | Pending          |
 | **UART TX**        | [UART_TX.v](./RTL/UART_TX.v) | Pending                            | Pending          | [UART_TX.md](./Docs/UART_TX.md) | Pending          |
 
